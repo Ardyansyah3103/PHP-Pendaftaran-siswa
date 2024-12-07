@@ -16,12 +16,14 @@
         <nav class="mb-3">
             <a href="form-daftar.php" class="btn btn-primary">[+] Tambah Baru</a>
             <a href="index.php" class="btn btn-secondary ml-2">Kembali</a>
+            <a href="pdf.php" class="btn btn-secondary ml-2" style="float: right;">Download PDF</a>
         </nav>
 
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">No</th>
+                    <th scope="col">Foto</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Alamat</th>
                     <th scope="col">Jenis Kelamin</th>
@@ -36,9 +38,20 @@
                 $sql = "SELECT * FROM calon_siswa";
                 $query = mysqli_query($db, $sql);
 
-                while($siswa = mysqli_fetch_array($query)){
+                // Variabel untuk nomor urut
+                $nomor = 1;
+
+                while ($siswa = mysqli_fetch_array($query)) {
                     echo "<tr>";
-                    echo "<td>".$siswa['id']."</td>";
+                    echo "<td>".$nomor++."</td>"; // Penomoran manual
+                    echo "<td>";
+                    if (file_exists("uploads/".$siswa['foto'])) {
+                        echo "<img src='uploads/".$siswa['foto']."' width='100' height='100'>";
+                    } else {
+                        echo "File tidak ditemukan: uploads/".$siswa['foto'];
+                    }
+                    echo "</td>";
+
                     echo "<td>".$siswa['nama']."</td>";
                     echo "<td>".$siswa['alamat']."</td>";
                     echo "<td>".$siswa['jenis_kelamin']."</td>";

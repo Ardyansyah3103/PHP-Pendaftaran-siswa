@@ -66,15 +66,10 @@
       <p class="card-text">Pendaftaran Mahasiswa Baru, Cepatkan bayar</p>
       <a href="form-daftar.php" class="btn btn-primary">Daftar Baru</a>
       <a href="list-siswa.php" class="btn btn-primary">List Pendaftar</a>
+      <a href="list-pegawai.php" class="btn btn-primary">Pegawai</a>
     </div>
   </div>
 
-  <!-- Toast for successful registration -->
-  <div class="toast" id="toast">
-    <div class="toast-body">
-      Pendaftaran Berhasil!
-    </div>
-  </div>
 
   <!--toast notif-->
   <script>

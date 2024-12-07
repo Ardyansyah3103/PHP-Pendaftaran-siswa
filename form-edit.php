@@ -34,7 +34,8 @@ if( mysqli_num_rows($query) < 1 ){
             <h3 class="text-center">Formulir Edit Siswa</h3>
         </header>
 
-        <form action="proses-edit.php" method="POST">
+        <!-- Perhatikan adanya enctype untuk mendukung unggahan file -->
+        <form action="proses-edit.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $siswa['id'] ?>" />
 
             <div class="mb-3">
@@ -80,9 +81,19 @@ if( mysqli_num_rows($query) < 1 ){
                 <input type="text" class="form-control" id="sekolah_asal" name="sekolah_asal" placeholder="Nama sekolah asal" value="<?php echo $siswa['sekolah_asal'] ?>" required>
             </div>
 
+            <div class="mb-3">
+                <label for="foto" class="form-label">Foto</label>
+                <input type="file" class="form-control" id="foto" name="foto">
+                <?php if ($siswa['foto']): ?>
+                    <img src="uploads/<?php echo $siswa['foto']; ?>" alt="Foto Siswa" class="img-thumbnail mt-2" width="150">
+                <?php else: ?>
+                    <p class="text-danger mt-2">Tidak ada foto</p>
+                <?php endif; ?>
+            </div>
+
             <nav class="mb-3">
-            <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
-            <a href="list-siswa.php" class="btn btn-secondary ml-2">Kembali</a>
+                <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
+                <a href="list-siswa.php" class="btn btn-secondary ml-2">Kembali</a>
             </nav>
         </form>
     </div>
